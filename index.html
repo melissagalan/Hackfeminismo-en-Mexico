@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hackfeminismo en México — Análisis de un movimiento tecnopolítico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fucsia: #e8007a;
+    --fucsia-light: #ff4da6;
+    --morado-light: #a78bfa;
+    --crema: #f5f0e8;
+    --gris: #999999;
+    --gris-claro: #cccccc;
+    --borde: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--crema);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--borde);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--fucsia);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gris);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--fucsia-light); }
+
+  /* ─── PORTADA ─── */
+  #portada {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .portada-izq {
+    padding: 120px 3.5rem 80px 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .portada-der {
+    position: relative;
+    background: #0e0e18;
+    overflow: hidden;
+  }
+
+  .portada-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    opacity: 0.88;
+  }
+
+  .img-credit {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.15);
+    text-transform: lowercase;
+    z-index: 3;
+  }
+
+  /* Gradiente para fusionar con el lado izquierdo */
+  .portada-der::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(10,10,10,0.55) 0%, transparent 30%),
+      linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* ─── TEXTO IZQUIERDO ─── */
+  .tag-movimiento {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    border: 1px solid var(--fucsia);
+    padding: 6px 14px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .portada-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+
+  .portada-titulo em {
+    font-style: italic;
+    color: var(--fucsia-light);
+  }
+
+  .portada-subtitulo {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--morado-light);
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .portada-intro {
+    font-size: 14.5px;
+    color: var(--gris-claro);
+    line-height: 1.9;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s ease 0.3s both;
+    text-align: justify;
+  }
+
+  /* Conceptos destacados: solo negritas, misma tipografía y color */
+  .portada-intro strong {
+    font-weight: 600;
+  }
+
+  .pregunta-central {
+    border-left: 3px solid var(--fucsia);
+    padding: 1.25rem 1.5rem;
+    background: rgba(232,0,122,0.05);
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+
+  .pregunta-central .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    margin-bottom: 0.75rem;
+  }
+
+  .pregunta-central p {
+    font-family: 'Playfair Display', serif;
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--crema);
+    line-height: 1.65;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 4rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .scroll-hint::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.18));
+    transform: translateY(-18px);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Grain sutil */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.018;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  @media (max-width: 900px) {
+    #portada { grid-template-columns: 1fr; }
+    .portada-der { height: 55vh; }
+    .portada-izq { padding: 120px 2rem 60px; }
+    .scroll-hint { left: 2rem; }
+  }
+
+  /* ─── SECCIÓN CONTEXTO ─── */
+  #contexto {
+    min-height: 100vh;
+    padding: 120px 0 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contexto-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    width: 100%;
+  }
+
+  .ctx-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: stretch;
+    margin-bottom: 5rem;
+  }
+
+  .ctx-titulo-bloque {
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ctx-tormenta-header {
+    width: 100%;
+    margin-top: 1.75rem;
+    display: block;
+    flex: 1;
+    object-fit: contain;
+    object-position: left center;
+    max-height: 160px;
+  }
+
+  .ctx-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(5rem, 10vw, 9rem);
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(232,0,122,0.1);
+    letter-spacing: -0.04em;
+    margin-bottom: -0.5rem;
+    user-select: none;
+  }
+
+  .ctx-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .ctx-titulo em {
+    font-style: italic;
+    color: var(--fucsia-light);
+  }
+
+  .ctx-subtitulo {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ctx-subtitulo::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--fucsia);
+  }
+
+  .ctx-intro {
+    font-size: 14px;
+    color: var(--gris);
+    line-height: 1.8;
+    max-width: 380px;
+  }
+
+  /* Imagen de contexto */
+  .ctx-img-wrap {
+    position: relative;
+    border: 1px solid var(--borde);
+    overflow: hidden;
+  }
+
+  .ctx-img-wrap img {
+    width: 100%;
+    display: block;
+    opacity: 0.75;
+    filter: grayscale(30%);
+    transition: opacity 0.4s, filter 0.4s;
+  }
+
+  .ctx-img-wrap:hover img {
+    opacity: 0.9;
+    filter: grayscale(0%);
+  }
+
+  .ctx-img-caption {
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid var(--borde);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .ctx-img-credit {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.15);
+    text-transform: lowercase;
+  }
+
+  /* Bloques de texto — timeline vertical */
+  .ctx-columnas {
+    border-top: 1px solid var(--borde);
+    padding-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  /* Línea vertical central de la timeline */
+  .ctx-timeline-linea {
+    position: absolute;
+    left: 28px;
+    top: 3.5rem;
+    bottom: 4rem;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--fucsia) 0%, rgba(232,0,122,0.15) 70%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .ctx-bloque {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--borde);
+    border-left: none;
+    padding: 0;
+    margin-left: 56px;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .ctx-bloque:last-of-type { margin-bottom: 0; }
+
+  /* Nodo circular en la línea */
+  .ctx-bloque::before {
+    content: '';
+    position: absolute;
+    left: -42px;
+    top: 1.6rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--fucsia);
+    transition: background 0.25s, box-shadow 0.25s;
+    z-index: 2;
+  }
+  .ctx-bloque-acord[data-open="true"]::before,
+  .ctx-bloque-acord:hover::before {
+    background: var(--fucsia);
+    box-shadow: 0 0 8px rgba(232,0,122,0.5);
+  }
+
+  /* Banner eliminado */
+  .ctx-tormenta-banner { display: none; }
+
+  .ctx-bloque-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--fucsia);
+    margin-bottom: 0.5rem;
+  }
+
+  .ctx-bloque-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--crema);
+  }
+
+  .ctx-bloque p {
+    font-size: 13.5px;
+    color: var(--gris-claro);
+    line-height: 1.85;
+    text-align: justify;
+    flex: 1;
+  }
+
+  .ctx-bloque p strong {
+    font-weight: 600;
+    color: var(--crema);
+  }
+
+  /* Cita de Anamhoo */
+  .ctx-cita {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--borde);
+    padding-top: 3rem;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .ctx-cita-linea {
+    width: 3px;
+    height: 100%;
+    min-height: 60px;
+    background: linear-gradient(to bottom, var(--fucsia), transparent);
+  }
+
+  .ctx-cita-texto {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--crema);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .ctx-cita-fuente {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gris);
+  }
+
+  @media (max-width: 900px) {
+    .ctx-header { grid-template-columns: 1fr; gap: 2rem; }
+    .ctx-columnas { padding-left: 0; }
+    .ctx-bloque { margin-left: 48px; }
+    .ctx-timeline-linea { left: 20px; }
+    .ctx-bloque::before { left: -34px; }
+    .contexto-inner { padding: 0 2rem; }
+  }
+
+  /* Links externos en sección contexto */
+  .ctx-link-externo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+    padding: 8px 14px;
+    border: 1px solid rgba(167,139,250,0.35);
+    color: var(--morado-light);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: rgba(167,139,250,0.04);
+    transition: all 0.25s;
+    align-self: flex-start;
+  }
+  .ctx-link-externo:hover {
+    border-color: var(--morado-light);
+    background: rgba(167,139,250,0.1);
+    color: #fff;
+  }
+  .ctx-link-peligro {
+    border-color: rgba(232,0,122,0.35);
+    color: var(--fucsia-light);
+    background: rgba(232,0,122,0.04);
+  }
+  .ctx-link-peligro:hover {
+    border-color: var(--fucsia-light);
+    background: rgba(232,0,122,0.1);
+    color: #fff;
+  }
+  .ctx-link-icono {
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  /* ─── ACORDEÓN BLOQUES CTX ─── */
+  .ctx-bloque-acord {
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .ctx-bloque-acord:hover {
+    border-color: rgba(232,0,122,0.25);
+    background: rgba(232,0,122,0.03);
+  }
+  .ctx-bloque-header {
+    width: 100%;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    text-align: left;
+  }
+  .ctx-acord-ico {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    color: var(--fucsia);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    transition: transform 0.3s ease;
+    line-height: 1;
+  }
+  .ctx-bloque-acord[data-open="true"] .ctx-acord-ico {
+    transform: rotate(45deg);
+  }
+  .ctx-bloque-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease, opacity 0.35s ease, padding 0.3s ease;
+    opacity: 0;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .ctx-bloque-acord[data-open="true"] .ctx-bloque-body {
+    max-height: 600px;
+    opacity: 1;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- ═══════ NAV ═══════ -->
+<nav>
+  <span class="nav-logo">Hackfeminismo MX</span>
+  <ul class="nav-links">
+    <li><a href="#portada">Inicio</a></li>
+    <li><a href="#contexto">Contexto</a></li>
+    <li><a href="#redes">Redes</a></li>
+    <li><a href="#simbolos">Símbolos</a></li>
+    <li><a href="#imaginacion">Imaginación</a></li>
+    <li><a href="#contranarrativa">Contranarrativa</a></li>
+    <li><a href="#referencias">Referencias</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════ PORTADA ═══════ -->
+<section id="portada">
+
+  <!-- Columna izquierda: texto -->
+  <div class="portada-izq">
+    <span class="tag-movimiento">Análisis de movimiento social</span>
+
+    <h1 class="portada-titulo">
+      <em>Hack</em>feminismo<br>en México
+    </h1>
+
+    <p class="portada-subtitulo">Tecnología · Cuerpo · Resistencia digital</p>
+
+    <p class="portada-intro">
+      El hackfeminismo articula redes colectivas para desafiar un
+      <strong>régimen de visibilidad patriarcal dentro del espacio público expandido</strong>,
+      donde la privatización de las plataformas digitales por grandes corporativos
+      <strong>reproduce estructuras de poder, vigilancia y exclusión coloniales</strong>.
+      A través de contranarrativas digitales y
+      <strong>prácticas de soberanía tecnológica</strong>,
+      estas colectivas enfrentan la brecha tecnológica y la violencia digital contra mujeres y disidencias.
+    </p>
+
+    <div class="pregunta-central">
+      <p class="label">Pregunta central de análisis</p>
+      <p>¿De qué forma las colectivas hackfeministas mexicanas construyen un sujeto político colectivo que disputa los algoritmos opacos como tecnologías de control sobre los cuerpos, los afectos y la imaginación política?</p>
+    </div>
+
+    <div class="scroll-hint">Desplaza para explorar</div>
+  </div>
+
+  <!-- Columna derecha: imagen -->
+  <div class="portada-der">
+    <img
+      class="portada-img"
+      src="amigashacker.jpg"
+      alt="Collage hackfeminista: figuras con cabezas de animales en vestidos victorianos, rodeadas de código y stickers de resistencia"
+    >
+    <span class="img-credit">amigashacker.jpg</span>
+  </div>
+
+</section>
+
+<!-- ═══════ CONTEXTO ═══════ -->
+<section id="contexto">
+  <div class="contexto-inner">
+
+    <div class="ctx-header">
+      <div class="ctx-titulo-bloque">
+        <p class="ctx-num">02</p>
+        <p class="ctx-subtitulo">Sección</p>
+        <h2 class="ctx-titulo">Contexto<br><em>histórico y social</em></h2>
+        <p class="ctx-intro">
+          Del ciberfeminismo noventero al hackfeminismo mexicano: genealogía de una práctica política que articula cuerpo, tecnología y resistencia colectiva.
+        </p>
+      </div>
+
+      <div class="ctx-texto-derecha">
+        <div class="ctx-cita" style="border-top:none; padding-top:0; margin-top:0; margin-bottom:2rem;">
+          <div class="ctx-cita-linea"></div>
+          <div>
+            <p class="ctx-cita-texto" style="font-size:13px; letter-spacing:-0.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+              "La in-dividualidad es sustituida por "dividuales" externos, informatizados e informatizables, que se desplazan en el espacio virtual"
+            </p>
+            <p class="ctx-cita-fuente">Deleuze, Post-scriptum sobre las sociedades de control, Ed. 2006</p>
+          </div>
+        </div>
+        <p style="font-size:14px; color:var(--gris-claro); line-height:1.9; text-align:justify;">
+          Siguiendo a Deleuze, el control de la vida se ha sofisticado al capturar nuestro tiempo en pantalla, es decir, nuestra atención, mientras el algoritmo opera como un nuevo panóptico en el sentido propuesto por Foucault: un método de vigilancia que no solo observa, sino que escucha, conoce, predice y, por supuesto, instruye; todo esto con una orientación al hiperconsumo capitalista. Así, las redes sociales digitales se convierten, tanto en su forma como en su fondo, en espacios donde se disputa el poder. En la forma, están mediadas por grandes estructuras a las que cedemos información para acceder a dimensiones clave de la contemporaneidad, como la socialización o la construcción de identidad; y que reproducen lógicas de poder disciplinario (Foucault) que nos configuran como una población medible y analizable estadísticamente, reducida a usuarios dentro de una plataforma. En su fondo, son la herramienta por excelencia que nos alimenta ideas de self-branding (Emmelheinz, 2016).
+        </p>
+      </div>
+    </div>
+
+    <div class="ctx-columnas">
+      <div class="ctx-timeline-linea"></div>
+
+      <div class="ctx-bloque ctx-bloque-acord" data-open="false">
+        <button class="ctx-bloque-header" aria-expanded="false">
+          <div>
+            <p class="ctx-bloque-num">01 — Antecedentes globales</p>
+            <h3 class="ctx-bloque-titulo">Ciberfeminismo y crítica tecnológica</h3>
+          </div>
+          <span class="ctx-acord-ico">＋</span>
+        </button>
+        <div class="ctx-bloque-body">
+          <p>
+            A pesar de que mujeres como <strong>Ada Lovelace</strong> (creadora del primer algoritmo de la historia) y <strong>Hedy Lamarr</strong> (cuya investigación es base del wifi y el bluetooth modernos) fueron centrales para la tecnología contemporánea, sus contribuciones han sido sistemáticamente borradas de la historia oficial. Ante esa exclusión estructural, pensadoras como <strong>Donna Haraway, Sandra Harding, Helen Longino, Evelyn Fox Keller</strong> y <strong>Ruth Bleier</strong> desarrollaron desde los años noventa una crítica al mito de la tecnología como espacio neutral, denunciando las estructuras patriarcales incrustadas en la ciencia y los sistemas tecnológicos.
+          </p>
+          <a href="https://hiladorasdebytes.sitiosccd.com.mx/archivo" target="_blank" class="ctx-link-externo">
+            <span class="ctx-link-icono">↗</span>
+            <span>Hiladoras de Bytes — archivo de mujeres en la ciencia</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="ctx-bloque ctx-bloque-acord" data-open="false">
+        <button class="ctx-bloque-header" aria-expanded="false">
+          <div>
+            <p class="ctx-bloque-num">02 — Primeros encuentros</p>
+            <h3 class="ctx-bloque-titulo">De Barcelona a TORmenta</h3>
+          </div>
+          <span class="ctx-acord-ico">＋</span>
+        </button>
+        <div class="ctx-bloque-body">
+          <p>
+            En 2014, el encuentro <strong>Backbond en Barcelona</strong> articuló un transhackfeminismo que combina software libre, activismo artístico y crítica a los binarismos de género. En México el término que terminó consolidándose fue <strong>hackfeminismo</strong>. En 2018, debido a un encuentro del <strong>Tor Project en Ciudad de México</strong>, <strong>Irene Soria</strong> —reconocida académica y hackfeminista mexicana— se preguntó dónde estaban las mujeres en ese espacio y convocó a feministas que habían retirado su lucha de las redes sociales. De esa reunión surgió <strong>TORmenta</strong>, un colectivo efímero que empezó a cuestionar no solo quién <em>usa</em> la tecnología, sino quién la <em>crea</em>.
+          </p>
+        </div>
+      </div>
+
+      <div class="ctx-bloque ctx-bloque-acord" data-open="false">
+        <button class="ctx-bloque-header" aria-expanded="false">
+          <div>
+            <p class="ctx-bloque-num">03 — El panorama actual</p>
+            <h3 class="ctx-bloque-titulo">Algoritmos, control y resistencia</h3>
+          </div>
+          <span class="ctx-acord-ico">＋</span>
+        </button>
+        <div class="ctx-bloque-body">
+          <p>
+            El escenario en que opera hoy el hackfeminismo está definido por corporaciones de figuras masculinas como las de <strong>Zuckerberg, Musk y Gates</strong>, que concentran poder mediante plataformas donde las personas son reducidas a <strong>datos e identidades cuantificables</strong>, y cuyos algoritmos moldean el sentido común, el consumo y las formas de interacción social. En México, ese entorno digital se cruza con violencia estructural contra mujeres y disidencias: el acoso en línea y el silenciamiento algorítmico son las formas contemporáneas en que el hackfeminismo construye <strong>autonomía tecnológica</strong> como respuesta a través de distintas agrupaciones.
+          </p>
+          <a href="https://x.com/PalantirTech/status/2045574398573453312" target="_blank" class="ctx-link-externo ctx-link-peligro">
+            <span class="ctx-link-icono">↗</span>
+            <span>Manifiesto Palantir — tecnología al servicio del poder</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="ctx-cita" style="border-top:none; padding-top:2rem; margin-top:0.5rem; margin-left:56px;">
+        <div class="ctx-cita-linea"></div>
+        <div>
+          <p class="ctx-cita-texto" style="font-size:13px; letter-spacing:-0.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+            "Dejamos que la gente se nombre desde donde prefiera nombrarse y recupere también para sí las cosas que puede recuperar de esto."
+          </p>
+          <p class="ctx-cita-fuente">Anamhoo — Colectiva ADA (Acción Directa Autogestiva), con respecto a la reapropiación del término transhackfeminismo a hackfeminismo en México</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.ctx-bloque-acord').forEach(bloque => {
+    bloque.querySelector('.ctx-bloque-header').addEventListener('click', () => {
+      const open = bloque.dataset.open === 'true';
+      bloque.dataset.open = open ? 'false' : 'true';
+      bloque.querySelector('.ctx-bloque-header').setAttribute('aria-expanded', !open);
+    });
+  });
+</script>
+
+<!-- ═══════ MAPA DE ACTORES Y REDES ═══════ -->
+<section id="redes" style="min-height:100vh; padding: 100px 0 80px; position:relative;">
+<style>
+  .mapa-wrap { max-width:1200px; margin:0 auto; padding:0 4rem; }
+  .mapa-header2 { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; margin-bottom:2.5rem; }
+  .mapa-num2 { font-family:'Playfair Display',serif; font-size:clamp(5rem,10vw,9rem); font-weight:900; line-height:1; color:rgba(232,0,122,0.1); letter-spacing:-0.04em; user-select:none; margin-bottom:-0.5rem; }
+  .mapa-titulo2 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:700; line-height:1.1; letter-spacing:-0.02em; }
+  .mapa-titulo2 em { font-style:italic; color:var(--fucsia-light); }
+  .mapa-subtag2 { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--fucsia); margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
+  .mapa-subtag2::before { content:''; display:block; width:24px; height:1px; background:var(--fucsia); }
+  .mapa-desc2 { font-size:13.5px; color:var(--gris-claro); line-height:1.8; }
+  .mapa-marco2 { font-size:12px; color:var(--gris); line-height:1.7; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--borde); }
+  .mapa-marco2 strong { color:var(--morado-light); font-weight:500; }
+  .marcos-row { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2rem; }
+  .marco-pill { border:1px solid var(--borde); border-top:2px solid; padding:1rem 1.25rem; background:#0f0f0f; }
+  .marco-pill.lat { border-top-color:#a78bfa; }
+  .marco-pill.mel { border-top-color:#e8007a; }
+  .marco-pill-aut { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.5rem; }
+  .marco-pill.lat .marco-pill-aut { color:#a78bfa; }
+  .marco-pill.mel .marco-pill-aut { color:var(--fucsia-light); }
+  .marco-pill p { font-size:12.5px; color:var(--gris-claro); line-height:1.7; text-align:justify; }
+  /* Cita THF */
+  .thf-cita { display:grid; grid-template-columns:3px 1fr; gap:1.5rem; align-items:start; margin-bottom:2rem; padding:1.5rem; background:rgba(167,139,250,0.04); border:1px solid rgba(167,139,250,0.12); }
+  .thf-cita-linea { width:3px; background:linear-gradient(to bottom,#a78bfa,transparent); min-height:60px; align-self:stretch; }
+  .thf-cita-texto { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:var(--gris-claro); line-height:1.75; margin-bottom:0.75rem; }
+  .thf-cita-fuente { margin-top:0.5rem; }
+  .thf-cita-link { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:#a78bfa; text-decoration:none; }
+  .thf-cita-link:hover { color:var(--morado-light); text-decoration:underline; }
+  .filtros-row { display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; margin-bottom:1rem; }
+  .fg { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .fg-label { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gris); margin-right:4px; }
+  .fb { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; padding:4px 12px; border:1px solid var(--borde); background:transparent; color:var(--gris); cursor:pointer; transition:all 0.2s; border-radius:2px; }
+  .fb:hover { border-color:rgba(232,0,122,0.5); color:var(--fucsia-light); }
+  .fb.on { background:rgba(232,0,122,0.12); border-color:var(--fucsia); color:var(--fucsia-light); }
+  #mapa-container { position:relative; width:100%; background:#0d0d0d; border:1px solid var(--borde); border-radius:3px; overflow:visible; }
+  #mapa-c { display:block; width:100%; cursor:default; }
+  #mtip { position:absolute; background:#191919; border:1px solid rgba(232,0,122,0.3); border-radius:3px; padding:10px 14px; max-width:260px; pointer-events:none; opacity:0; transition:opacity 0.15s; z-index:20; font-size:12px; line-height:1.55; }
+  #mtip.show { opacity:1; }
+  .tt-h { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; color:var(--crema); margin-bottom:3px; }
+  .tt-sub { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:7px; }
+  .tt-lbl { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gris); margin-top:5px; display:block; }
+  .tt-val { color:var(--gris-claro); font-size:12px; }
+  .leyenda-row { display:flex; flex-wrap:wrap; gap:1.25rem; margin-top:0.75rem; }
+  .ley-i { display:flex; align-items:center; gap:7px; font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gris); }
+  .ley-d { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .ley-sq { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
+  .ley-tri { width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; flex-shrink:0; }
+  #mapa-panel { display:none; margin-top:1rem; background:#0f0f0f; border:1px solid var(--borde); border-left:3px solid var(--fucsia); padding:1.5rem 2rem; }
+  #mapa-panel.show { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2rem; }
+  .pd-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--crema); grid-column:1/-1; margin-bottom:0.25rem; }
+  .pd-tag { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gris); border:1px solid var(--borde); padding:2px 8px; display:inline-block; margin-bottom:1rem; grid-column:1/-1; }
+  .pd-blk-t { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--fucsia); margin-bottom:0.4rem; }
+  .pd-blk-v { font-size:12.5px; color:var(--gris-claro); line-height:1.75; }
+  .pd-close { grid-column:1/-1; font-family:'Space Mono',monospace; font-size:9px; letter-spacing:0.12em; color:var(--gris); cursor:pointer; text-transform:uppercase; border:none; background:none; text-align:right; margin-top:0.5rem; display:block; width:100%; }
+  .pd-close:hover { color:var(--fucsia-light); }
+  @media(max-width:900px){
+    .mapa-wrap{padding:0 2rem;}
+    .mapa-header2{grid-template-columns:1fr;gap:1.5rem;}
+    .marcos-row{grid-template-columns:1fr;}
+    #mapa-panel.show{grid-template-columns:1fr;}
+  }
+</style>
+
+<div class="mapa-wrap">
+  <div class="mapa-header2">
+    <div>
+      <p class="mapa-num2">03</p>
+      <p class="mapa-subtag2">Sección</p>
+      <h2 class="mapa-titulo2">Mapa de actores<br>y <em>redes del movimiento</em></h2>
+    </div>
+    <div>
+      
+    </div>
+  </div>
+
+  <div class="marcos-row">
+    <div class="marco-pill lat">
+      <p class="marco-pill-aut">Bruno Latour — Teoría del Actor-Red</p>
+      <p>El hackfeminismo en México opera como una red de actantes donde la formación de grupos no depende únicamente de sujetos humanos, sino de múltiples tecnologías —plataformas, algoritmos, datos— que intervienen en la producción del poder. Estas asociaciones operan mediante mediadores que, al momento de transmitir información, jerarquizan lo visible y lo invisible en el entorno digital. Esto coloca la controversia de independencia ante grandes empresas que monopolizan la tecnología, en el entendido que una misma puede programar y reparar sus aparatos electrónicos.</p>
+    </div>
+    <div class="marco-pill mel">
+      <p class="marco-pill-aut">Alberto Melucci — Acción Colectiva</p>
+      <p>El hackfeminismo es un movimiento social que articula acción colectiva para hacer frente al conflicto de exclusión tecnológica con respecto al género. A pesar de ser personas muy distintas, su identidad colectiva se construye con la sororidad que surge de experiencias compartidas. Se caracteriza por ser un movimiento predominantemente de latencia —prácticas cotidianas— y se articula con otros movimientos, como el feminismo general, en momentos de mayor visibilidad pública.</p>
+    </div>
+  </div>
+
+  <div class="thf-cita">
+    <div class="thf-cita-linea"></div>
+    <div class="thf-cita-cuerpo">
+      <p class="thf-cita-texto">
+        "Las redes de sororidad son un ejemplo de infraestructura feminista, y representan una de nuestras primeras tecnologías feministas, quizá de las más antiguas y extendidas (…) la construcción de espacios seguros, refugios para mujeres y personas sobrevivientes, líneas de atención (helplines), redes de apoyo y solidaridad para migrantes y refugiadas, hacklabs/fablabs/biolabs feministas, radios, servidores, AI, bots y protocolos de internet feministas, procesos de justicia restaurativos, ciencia ficción y futurotopias feministas, bibliotecas y fanzines feministas, herramientas de documentación y memoria, enciclopedias, HerStories, repositorios y recursos de autodefensa, seguridad digital y física con perspectiva feminista, huertos permaculturales, jardines de plantas abortivas, hechizos, rituales, y técnicas para la vida en el sentido más amplio."
+      </p>
+      <p class="thf-cita-fuente">
+        <a href="https://zoiahorn.anarchaserver.org/thf2022/bienvenides-a-la-convergencia-transhackfeminista-2022/" target="_blank" class="thf-cita-link">Cuarta Convergencia TransHackFeminista (THF!) — 2022 ↗</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="filtros-row">
+    <div class="fg">
+      <span class="fg-label">Mostrar:</span>
+      <button class="fb on" data-f="todo">Todo</button>
+      <button class="fb" data-f="colectiva">Solo colectivas</button>
+      <button class="fb" data-f="espacios">+ Espacios</button>
+      <button class="fb" data-f="actantes">+ Actantes</button>
+    </div>
+    <div class="fg" style="margin-left:auto;">
+      <span class="fg-label">Conflicto:</span>
+      <button class="fb" data-conf="violencia">Violencia digital</button>
+      <button class="fb" data-conf="soberania">Soberanía tecnológica</button>
+      <button class="fb" data-conf="brecha">Brecha STEM</button>
+      <button class="fb" data-conf="desaparicion">Desaparición forzada</button>
+    </div>
+  </div>
+
+  <div id="mapa-container">
+    <canvas id="mapa-c"></canvas>
+    <div id="mtip">
+      <p class="tt-h" id="tt-h"></p>
+      <p class="tt-sub" id="tt-sub"></p>
+      <span class="tt-lbl" id="tt-l1"></span>
+      <span class="tt-val" id="tt-v1"></span>
+      <span class="tt-lbl" id="tt-l2"></span>
+      <span class="tt-val" id="tt-v2"></span>
+      <span class="tt-lbl" id="tt-l3"></span>
+      <span class="tt-val" id="tt-v3"></span>
+    </div>
+  </div>
+
+  <div class="leyenda-row">
+    <div class="ley-i"><div class="ley-d" style="background:#7F77DD"></div>Violencia digital / género</div>
+    <div class="ley-i"><div class="ley-d" style="background:#1D9E75"></div>Soberanía tecnológica</div>
+    <div class="ley-i"><div class="ley-d" style="background:#D85A30"></div>Brecha STEM / conocimiento</div>
+    <div class="ley-i"><div class="ley-d" style="background:#D4537E"></div>Desaparición forzada / memoria</div>
+    <div class="ley-i"><div class="ley-sq" style="background:#555;"></div>Espacios</div>
+    <div class="ley-i"><div class="ley-tri" style="border-bottom:10px solid #a78bfa;"></div>Actantes no humanos</div>
+  </div>
+
+  <div id="mapa-panel">
+    <p class="pd-name" id="pd-name"></p>
+    <span class="pd-tag" id="pd-tag"></span>
+    <div>
+      <p class="pd-blk-t">Formación de grupos</p>
+      <p class="pd-blk-v" id="pd-id"></p>
+    </div>
+    <div>
+      <p class="pd-blk-t">Conflicto</p>
+      <p class="pd-blk-v" id="pd-conf"></p>
+    </div>
+    <div>
+      <p class="pd-blk-t">Acción colectiva</p>
+      <p class="pd-blk-v" id="pd-acc"></p>
+    </div>
+    <div>
+      <p class="pd-blk-t">Portavoces</p>
+      <p class="pd-blk-v" id="pd-env"></p>
+    </div>
+    <div>
+      <p class="pd-blk-t">Actantes no humanos</p>
+      <p class="pd-blk-v" id="pd-anh"></p>
+    </div>
+    <div>
+      <p class="pd-blk-t">Espacios</p>
+      <p class="pd-blk-v" id="pd-esp"></p>
+    </div>
+    <button class="pd-close" id="pd-close">× Cerrar ficha</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const W=740, H=580;
+  const canvas=document.getElementById('mapa-c');
+  canvas.width=W; canvas.height=H;
+  const cx=canvas.getContext('2d');
+  const tip=document.getElementById('mtip');
+  let filtro='todo', confActivo=null, hovered=null, seleccionada=null;
+
+  const COL={violencia:'#7F77DD',soberania:'#1D9E75',brecha:'#D85A30',desaparicion:'#D4537E'};
+
+  const colectivas=[
+    {id:'editatonas',label:'Editatonas',tipo:'violencia',x:360,y:110,
+     territorio:'Ciudad de México / LATAM',
+     identidad:'Iniciativa conjunta de Wikimedia México, Luchadoras y SocialTIC.',
+     conflicto:'Wikipedia tiene una brecha de género estructural: 9 de cada 10 editores son hombres. Editar es un acto político de visibilización.',
+     accion:'Maratones de edición en Wikipedia · Talleres de formación digital · Conversatorios · Eventos híbridos',
+     portavoces:'Wikimedia México, Luchadoras y SocialTIC',
+     actantes:'Wikipedia · Algoritmo de edición · Servidores Wikimedia · Licencia Creative Commons · Computadoras',
+     espacios:'Wikipedia · Redes sociales · Centro de Cultura Digital CDMX · Biblioteca Vasconcelos · MUAC'},
+    {id:'sursiendo',label:'Sursiendo',tipo:'soberania',x:130,y:330,
+     territorio:'San Cristóbal de las Casas, Chiapas',
+     identidad:'Colectiva fundada en 2011. Figura pública: Jes Ciacci.',
+     conflicto:'Internet es un territorio político y no neutral. La tecnología debe pensarse con lentes feministas, descoloniales y ambientales.',
+     accion:'Talleres hackfeministas · Publicaciones (Tecnoafecciones) · Cine-foro · Investigación',
+     portavoces:'Jes Ciacci',
+     actantes:'Software libre (Debian/GNU-Linux) · Mastodon · Servidores autogestionados · Hardware comunitario',
+     espacios:'Mastodon/fediverso · Sitio web propio · Comunidades en Chiapas · Redes LATAM'},
+    {id:'socialtic',label:'SocialTIC',tipo:'soberania',x:470,y:200,
+     territorio:'Ciudad de México / América Latina',
+     identidad:'ONG fundada en 2012. Alianzas con Luchadoras, R3D, Article 19.',
+     conflicto:'La tecnología digital puede ser herramienta de cambio social, pero también vector de riesgo para activistas en un país altamente peligroso.',
+     accion:'Talleres de seguridad digital · Capacitaciones a OSC · Investigación · Eventos de datos abiertos',
+     portavoces:'Paul Aguilar',
+     actantes:'Datos abiertos · Herramientas de cifrado · Plataformas de comunicación segura · Software libre',
+     espacios:'socialtic.org · Redes sociales · Eventos presenciales CDMX · Talleres virtuales'},
+    {id:'luchadoras',label:'Luchadoras',tipo:'violencia',x:240,y:195,
+     territorio:'Ciudad de México / nacional y latinoamericano',
+     identidad:'Fundada en 2012 por Perla Vázquez, Eve Alcalá, Anaiz Zamora y Lulú V Barrera.',
+     conflicto:'La violencia de género no se detiene en lo físico: el ciberacoso y el hostigamiento político en línea son su extensión digital.',
+     accion:'Producción audiovisual · Línea de Apoyo contra violencia digital · Talleres TICs y género · Memoria digital de feminicidios',
+     portavoces:'Perla Vázquez, Eve Alcalá, Anaiz Zamora, Lulú V Barrera, Ixchel García, Itzel Plascencia',
+     actantes:'Twitter/X · Instagram · Algoritmos de plataformas · WhatsApp (Línea de Apoyo) · Servidores',
+     espacios:'luchadoras.mx · Redes sociales · CDMX'},
+    {id:'nodocomun',label:'NodoComún',tipo:'soberania',x:365,y:290,
+     territorio:'Ciudad de México / red colaborativa LATAM',
+     identidad:'Nodo de la red Ciberseguras, junto a SocialTIC y Luchadoras. Estructura horizontal.',
+     conflicto:'La seguridad digital no es un asunto individual ni técnico: es una práctica colectiva y feminista de autocuidado frente a la vigilancia.',
+     accion:'Talleres de autodefensa digital · Criptofiestas · Hacklabs · Guías y materiales de seguridad',
+     portavoces:'Red Ciberseguras (estructura horizontal)',
+     actantes:'Herramientas de cifrado · Correo seguro · Tor/VPN · Software libre · Redes descentralizadas',
+     espacios:'Plataforma web · Listas de correo · Redes sociales · Talleres presenciales y virtuales'},
+    {id:'epicqueen',label:'Epic Queen',tipo:'brecha',x:560,y:340,
+     territorio:'Ciudad de México / 35 sedes en México y LATAM',
+     identidad:'Fundada en 2014–2015 por Ana Karen Ramírez y Daniela González. Impacto: +70,000 niñas y mujeres.',
+     conflicto:'Solo el 20% de estudiantes de ingeniería en México son mujeres; el desinterés en STEM se instala desde los 15 años por estereotipos de género.',
+     accion:'Talleres STEM para niñas · Code Party · Party STEM · Eventos en 35 sedes · Cursos online · Podcast',
+     portavoces:'Ana Karen Ramírez (directora), Daniela González',
+     actantes:'Plataforma educativa online · IA y programación · Blockchain · Spotify · YouTube · Computadoras',
+     espacios:'epicqueen.com · Spotify · YouTube · 35 sedes presenciales en México'},
+    {id:'colibri',label:'Comando Colibrí',tipo:'violencia',x:130,y:205,
+     territorio:'CDMX · Oaxaca · Guadalajara',
+     identidad:'Fundada por Kat Koatl. Colaboración con Laboratorio de Interconectividades (Liliana Zaragoza / Lili_Anaz).',
+     conflicto:'El cuerpo de las mujeres es también un territorio en disputa: la violencia física y la digital son el mismo continuum patriarcal.',
+     accion:'Defensa personal feminista (Wing Chun) · Autodefensa digital · Talleres para mujeres privadas de libertad · Spoken word',
+     portavoces:'Kat Koatl, Liliana Zaragoza (Lili_Anaz)',
+     actantes:'Herramientas de cifrado · Software libre · Cuerpo físico (artes marciales) · Megáfonos y tambores',
+     espacios:'comandocolibri.red · Win Bao Palestra Oaxaca · Calle · Redes sociales'},
+    {id:'amigashacker',label:'AmigasHacker',tipo:'violencia',x:465,y:415,
+     territorio:'CDMX · Puebla · Guadalajara · LATAM digital',
+     identidad:'Proyecto personal-colectivo vinculado a redes LATAM de seguridad digital feminista.',
+     conflicto:'El acoso digital y el stalking son violencias estructurales. La seguridad digital debe enseñarse desde el cuidado y el humor, no desde el miedo técnico.',
+     accion:'Talleres de seguridad digital · TierraTECH (juego de mesa) · Textos sobre violencia digital · Acompañamiento LGBTQI+',
+     portavoces:'Voz pública propia; vinculada a redes LATAM',
+     actantes:'Internet · Código · Algoritmos · TierraTECH · Herramientas de cifrado · Redes federadas',
+     espacios:'amigashacker.club · Redes sociales · Espacios presenciales Puebla y Guadalajara'},
+    {id:'tecnicasrudas',label:'Técnicas Rudas',tipo:'desaparicion',x:285,y:445,
+     territorio:'Puebla / articulación nacional',
+     identidad:'Itzell Sánchez Martínez y Arturo Muñoz Rodríguez. Alianzas con Madres en Búsqueda, Voz de los Desaparecidos, Periodistas de a Pie.',
+     conflicto:'La desaparición forzada es un crimen de Estado sistemático invisibilizado por narrativas mediáticas que revictimizan a las familias buscadoras.',
+     accion:'Podcast y audiovisual · Exposiciones de carteles · Murales comunitarios · Caravanas internacionales · Talleres con familias buscadoras',
+     portavoces:'Itzell Sánchez Martínez, Arturo Muñoz Rodríguez',
+     actantes:'Podcast · Carteles y murales · Radio · Video y animación · Redes sociales · Fotografía',
+     espacios:'narrativasymemorias.org · BUAP · Ibero Puebla · Radio Educación · Zócalos de ciudades'},
+  ];
+
+  const espaciosNodos=[
+    {id:'wikipedia',label:'Wikipedia',x:365,y:45,linked:['editatonas','luchadoras','socialtic']},
+    {id:'redes_soc',label:'Redes sociales',x:590,y:130,linked:['luchadoras','socialtic','epicqueen','amigashacker','colibri']},
+    {id:'mastodon',label:'Mastodon / fediverso',x:80,y:415,linked:['sursiendo','nodocomun']},
+    {id:'calle',label:'Calle / espacio público',x:80,y:140,linked:['colibri','tecnicasrudas']},
+    {id:'universidades',label:'Universidades',x:420,y:510,linked:['tecnicasrudas','epicqueen','socialtic']},
+    {id:'plat_web',label:'Plataformas web',x:630,y:415,linked:['amigashacker','epicqueen','nodocomun']},
+  ];
+
+  const actantesNodos=[
+    {id:'tor',label:'Tor / VPN',x:235,y:305,linked:['nodocomun','amigashacker','colibri']},
+    {id:'cifrado',label:'Cifrado digital',x:155,y:430,linked:['nodocomun','sursiendo','socialtic']},
+    {id:'tierratech',label:'TierraTECH',x:580,y:470,linked:['amigashacker']},
+    {id:'softlibre',label:'Software libre',x:80,y:260,linked:['sursiendo','nodocomun','colibri','socialtic']},
+    {id:'algoritmos',label:'Algoritmos',x:645,y:245,linked:['luchadoras','editatonas','amigashacker']},
+    {id:'podcast_r',label:'Podcast / Radio',x:185,y:510,linked:['tecnicasrudas','epicqueen']},
+  ];
+
+  const links=[
+    ['luchadoras','editatonas'],['socialtic','editatonas'],
+    ['luchadoras','socialtic'],['nodocomun','luchadoras'],
+    ['nodocomun','socialtic'],['sursiendo','nodocomun'],
+    ['colibri','sursiendo'],['amigashacker','nodocomun'],
+    ['luchadoras','colibri'],['socialtic','epicqueen'],
+    ['amigashacker','tecnicasrudas'],['tecnicasrudas','sursiendo'],
+  ];
+
+  function getAll(){return[...colectivas,...espaciosNodos,...actantesNodos];}
+  function getNode(id){return getAll().find(n=>n.id===id);}
+  function colorCol(n){return COL[n.tipo]||'#888';}
+
+  function isVisible(n){
+    const esCol=colectivas.includes(n);
+    const esEsp=espaciosNodos.includes(n);
+    const esAct=actantesNodos.includes(n);
+    if(confActivo&&esCol&&n.tipo!==confActivo) return false;
+    if(filtro==='colectiva') return esCol;
+    if(filtro==='espacios') return esCol||esEsp;
+    if(filtro==='actantes') return esCol||esAct;
+    return true;
+  }
+
+  function draw(){
+    cx.clearRect(0,0,W,H);
+
+    // Zonas
+    const zonas=[
+      {x:310,y:230,rx:230,ry:170,c:'#7F77DD'},
+      {x:200,y:310,rx:160,ry:120,c:'#1D9E75'},
+      {x:515,y:350,rx:120,ry:90,c:'#D85A30'},
+      {x:310,y:435,rx:120,ry:70,c:'#D4537E'},
+    ];
+    zonas.forEach(z=>{
+      if(confActivo&&z.c!==COL[confActivo]) return;
+      cx.save();cx.globalAlpha=0.04;cx.fillStyle=z.c;
+      cx.beginPath();cx.ellipse(z.x,z.y,z.rx,z.ry,0,0,Math.PI*2);cx.fill();cx.restore();
+    });
+
+    // Grid
+    cx.save();cx.globalAlpha=0.025;cx.strokeStyle='#fff';cx.lineWidth=0.5;
+    for(let gx=0;gx<=W;gx+=60){cx.beginPath();cx.moveTo(gx,0);cx.lineTo(gx,H);cx.stroke();}
+    for(let gy=0;gy<=H;gy+=60){cx.beginPath();cx.moveTo(0,gy);cx.lineTo(W,gy);cx.stroke();}
+    cx.restore();
+
+    // Links entre colectivas
+    links.forEach(([a,b])=>{
+      const na=getNode(a),nb=getNode(b);
+      if(!na||!nb||!isVisible(na)||!isVisible(nb)) return;
+      const isHov=hovered&&(hovered.id===a||hovered.id===b);
+      cx.save();cx.globalAlpha=isHov?0.55:0.18;
+      cx.strokeStyle='#e8007a';cx.lineWidth=1.5;cx.setLineDash([4,4]);
+      cx.beginPath();cx.moveTo(na.x,na.y);cx.lineTo(nb.x,nb.y);cx.stroke();cx.restore();
+    });
+
+    // Links espacios/actantes
+    [...espaciosNodos,...actantesNodos].forEach(n=>{
+      if(!isVisible(n)) return;
+      n.linked.forEach(lid=>{
+        const t=getNode(lid);if(!t||!isVisible(t)) return;
+        const isHov=hovered&&(hovered.id===n.id||hovered.id===lid);
+        cx.save();cx.globalAlpha=isHov?0.35:0.1;
+        cx.strokeStyle=espaciosNodos.includes(n)?'#888':'#a78bfa';
+        cx.lineWidth=0.8;cx.setLineDash([2,5]);
+        cx.beginPath();cx.moveTo(n.x,n.y);cx.lineTo(t.x,t.y);cx.stroke();cx.restore();
+      });
+    });
+
+    // Espacios (rectángulos)
+    if(filtro==='todo'||filtro==='espacios'){
+      espaciosNodos.forEach(n=>{
+        if(!isVisible(n)) return;
+        const r=12,isHov=hovered&&hovered.id===n.id;
+        cx.save();cx.globalAlpha=isHov?0.9:0.55;
+        cx.fillStyle='#333';cx.strokeStyle='#666';cx.lineWidth=1;
+        cx.beginPath();cx.roundRect(n.x-r,n.y-r,r*2,r*2,3);cx.fill();cx.stroke();cx.restore();
+        cx.save();cx.globalAlpha=isHov?1:0.65;
+        cx.fillStyle='#ccc';cx.font='9px "Space Mono",monospace';cx.textAlign='center';
+        cx.fillText(n.label,n.x,n.y+r+11);cx.restore();
+      });
+    }
+
+    // Actantes (triángulos)
+    if(filtro==='todo'||filtro==='actantes'){
+      actantesNodos.forEach(n=>{
+        if(!isVisible(n)) return;
+        const r=10,isHov=hovered&&hovered.id===n.id;
+        cx.save();cx.globalAlpha=isHov?0.9:0.55;
+        cx.fillStyle='rgba(167,139,250,0.18)';cx.strokeStyle='#a78bfa';cx.lineWidth=1;
+        cx.beginPath();cx.moveTo(n.x,n.y-r);cx.lineTo(n.x+r,n.y+r);cx.lineTo(n.x-r,n.y+r);cx.closePath();
+        cx.fill();cx.stroke();cx.restore();
+        cx.save();cx.globalAlpha=isHov?1:0.65;
+        cx.fillStyle='#a78bfa';cx.font='9px "Space Mono",monospace';cx.textAlign='center';
+        cx.fillText(n.label,n.x,n.y+r+11);cx.restore();
+      });
+    }
+
+    // Colectivas (círculos)
+    colectivas.forEach(n=>{
+      const visible=isVisible(n);
+      const r=22,col=colorCol(n);
+      const isHov=hovered&&hovered.id===n.id;
+      const isSel=seleccionada&&seleccionada.id===n.id;
+      cx.save();cx.globalAlpha=visible?(isHov?1:0.88):0.1;
+      if(isSel&&visible){
+        cx.strokeStyle=col;cx.lineWidth=2;cx.globalAlpha=0.3;
+        cx.beginPath();cx.arc(n.x,n.y,r+10,0,Math.PI*2);cx.stroke();
+        cx.globalAlpha=0.88;
+      }
+      cx.fillStyle=col+'26';cx.strokeStyle=col;cx.lineWidth=1.5;
+      cx.beginPath();cx.arc(n.x,n.y,r,0,Math.PI*2);cx.fill();cx.stroke();
+      cx.fillStyle=col;cx.beginPath();cx.arc(n.x,n.y,5,0,Math.PI*2);cx.fill();
+      cx.restore();
+      cx.save();cx.globalAlpha=visible?1:0.12;
+      cx.fillStyle='#f5f0e8';cx.font='bold 9px "Space Mono",monospace';cx.textAlign='center';
+      const words=n.label.split(' ');
+      if(words.length===1){cx.fillText(n.label,n.x,n.y+r+13);}
+      else{const h=Math.ceil(words.length/2);cx.fillText(words.slice(0,h).join(' '),n.x,n.y+r+12);cx.fillText(words.slice(h).join(' '),n.x,n.y+r+22);}
+      cx.restore();
+    });
+  }
+
+  function getHit(mx,my){
+    const scale=canvas.getBoundingClientRect().width/W;
+    const x=mx/scale,y=my/scale;
+    for(const n of getAll()){
+      if(!isVisible(n)) continue;
+      const r=(colectivas.includes(n)?22:12)+8;
+      if((n.x-x)**2+(n.y-y)**2<r*r) return n;
+    }
+    return null;
+  }
+
+  function showTip(n){
+    document.getElementById('tt-h').textContent=n.label;
+    const esCol=colectivas.includes(n),esEsp=espaciosNodos.includes(n);
+    const tipo=esCol?'Colectiva':esEsp?'Espacio / Plataforma':'Actante no humano';
+    const tsub=document.getElementById('tt-sub');
+    tsub.textContent=tipo+(n.territorio?' · '+n.territorio:'');
+    tsub.style.color=esCol?colorCol(n):'#a78bfa';
+    if(esCol){
+      document.getElementById('tt-l1').textContent='Conflicto';
+      document.getElementById('tt-v1').textContent=n.conflicto;
+      document.getElementById('tt-l2').textContent='Portavoces';
+      document.getElementById('tt-v2').textContent=n.portavoces;
+      document.getElementById('tt-l3').textContent='↓ Clic para ver ficha completa';
+      document.getElementById('tt-v3').textContent='';
+    } else {
+      document.getElementById('tt-l1').textContent='Vinculada a';
+      document.getElementById('tt-v1').textContent=n.linked.map(id=>getNode(id)?.label||id).join(', ');
+      document.getElementById('tt-l2').textContent='';document.getElementById('tt-v2').textContent='';
+      document.getElementById('tt-l3').textContent='';document.getElementById('tt-v3').textContent='';
+    }
+    const cont=document.getElementById('mapa-container');
+    const cr=cont.getBoundingClientRect();
+    const scale=cr.width/W;
+    let tx=n.x*scale+14,ty=n.y*scale-10;
+    if(tx+270>cr.width) tx=n.x*scale-278;
+    if(ty<0) ty=10;
+    tip.style.left=tx+'px';tip.style.top=ty+'px';
+    tip.classList.add('show');
+  }
+
+  canvas.addEventListener('mousemove',e=>{
+    const r=canvas.getBoundingClientRect();
+    const n=getHit(e.clientX-r.left,e.clientY-r.top);
+    hovered=n||null;canvas.style.cursor=n?'pointer':'default';
+    if(n) showTip(n); else tip.classList.remove('show');
+    draw();
+  });
+  canvas.addEventListener('mouseleave',()=>{hovered=null;tip.classList.remove('show');draw();});
+  canvas.addEventListener('click',e=>{
+    const r=canvas.getBoundingClientRect();
+    const n=getHit(e.clientX-r.left,e.clientY-r.top);
+    if(n&&colectivas.includes(n)){
+      seleccionada=n;
+      document.getElementById('pd-name').textContent=n.label;
+      document.getElementById('pd-tag').textContent=n.tipo+' · '+n.territorio;
+      document.getElementById('pd-id').textContent=n.identidad;
+      document.getElementById('pd-conf').textContent=n.conflicto;
+      document.getElementById('pd-acc').textContent=n.accion;
+      document.getElementById('pd-env').textContent=n.portavoces;
+      document.getElementById('pd-anh').textContent=n.actantes;
+      document.getElementById('pd-esp').textContent=n.espacios;
+      document.getElementById('mapa-panel').classList.add('show');
+      document.getElementById('mapa-panel').scrollIntoView({behavior:'smooth',block:'nearest'});
+      draw();
+    }
+  });
+  document.getElementById('pd-close').addEventListener('click',()=>{
+    seleccionada=null;document.getElementById('mapa-panel').classList.remove('show');draw();
+  });
+  document.querySelectorAll('[data-f]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('[data-f]').forEach(b=>b.classList.remove('on'));
+      btn.classList.add('on');filtro=btn.dataset.f;draw();
+    });
+  });
+  document.querySelectorAll('[data-conf]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(confActivo===btn.dataset.conf){confActivo=null;btn.classList.remove('on');}
+      else{document.querySelectorAll('[data-conf]').forEach(b=>b.classList.remove('on'));btn.classList.add('on');confActivo=btn.dataset.conf;}
+      draw();
+    });
+  });
+  draw();
+})();
+</script>
+</section>
+
+<!-- ═══════ ANÁLISIS DE IMAGEN Y REPERTORIOS SIMBÓLICOS ═══════ -->
+<section id="simbolos">
+<style>
+  #simbolos {
+    min-height: 100vh;
+    padding: 120px 0 100px;
+    position: relative;
+  }
+  .simb-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+  .simb-header {
+    margin-bottom: 4rem;
+  }
+  .simb-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(5rem, 10vw, 9rem);
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(232,0,122,0.1);
+    letter-spacing: -0.04em;
+    margin-bottom: -0.5rem;
+    user-select: none;
+  }
+  .simb-subtag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .simb-subtag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--fucsia);
+  }
+  .simb-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    max-width: 700px;
+  }
+  .simb-titulo em { font-style: italic; color: var(--fucsia-light); }
+
+  /* Contenedor por imagen analizada — Grid 2×2 */
+  .simb-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .simb-entry {
+    border: 1px solid var(--borde);
+    background: rgba(255,255,255,0.015);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  /* Marco de imagen uniforme */
+  .simb-imagen-marco {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    position: relative;
+    cursor: zoom-in;
+    flex-shrink: 0;
+    background: #0e0e0e;
+  }
+  .simb-imagen-marco img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    opacity: 0.88;
+    transition: opacity 0.3s, transform 0.4s ease;
+  }
+  .simb-imagen-marco:hover img {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  .simb-imagen-marco:hover .simb-imagen-hint {
+    opacity: 1;
+  }
+  .simb-imagen-hint {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 0.6rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    background: rgba(0,0,0,0.65);
+    padding: 3px 8px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .simb-entry-filename {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    padding: 0.9rem 1.25rem 0.75rem;
+    border-bottom: 1px solid var(--borde);
+  }
+  /* Acordeones dentro de la tarjeta */
+  .simb-acord-list {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 1rem 0 1rem 1.75rem;
+  }
+  .simb-timeline-linea {
+    position: absolute;
+    left: 22px;
+    top: 0;
+    bottom: 1rem;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--fucsia) 0%, rgba(232,0,122,0.1) 80%, transparent 100%);
+    pointer-events: none;
+  }
+  .simb-acord {
+    position: relative;
+    margin-left: 44px;
+    border: 1px solid var(--borde);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .simb-acord:last-child { border-bottom: none; }
+  .simb-acord::before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 1.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--fucsia);
+    transition: background 0.25s, box-shadow 0.25s;
+    z-index: 2;
+  }
+  .simb-acord[data-open="true"]::before,
+  .simb-acord:hover::before {
+    background: var(--fucsia);
+    box-shadow: 0 0 8px rgba(232,0,122,0.5);
+  }
+  .simb-acord:hover { background: rgba(232,0,122,0.025); }
+
+  @media (max-width: 900px) {
+    .simb-grid { grid-template-columns: 1fr; }
+    .simb-wrap { padding: 0 2rem; }
+  }
+  .simb-acord-header {
+    width: 100%;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.4rem 2rem 1.4rem 1.5rem;
+    text-align: left;
+  }
+  .simb-acord-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--crema);
+    line-height: 1.3;
+  }
+  .simb-acord-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--fucsia);
+    margin-bottom: 0.35rem;
+  }
+  .simb-acord-ico {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    color: var(--fucsia);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    transition: transform 0.3s ease;
+    line-height: 1;
+  }
+  .simb-acord[data-open="true"] .simb-acord-ico {
+    transform: rotate(45deg);
+  }
+  .simb-acord-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease, opacity 0.35s ease, padding 0.3s ease;
+    opacity: 0;
+    padding: 0 2rem 0 1.5rem;
+  }
+  .simb-acord[data-open="true"] .simb-acord-body {
+    max-height: 1200px;
+    opacity: 1;
+    padding: 0 2rem 1.5rem 1.5rem;
+  }
+  .simb-acord-body p {
+    font-size: 13.5px;
+    color: var(--gris-claro);
+    line-height: 1.9;
+    text-align: justify;
+    color: #ffffff;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Popup modal */
+  .simb-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.88);
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    backdrop-filter: blur(6px);
+  }
+  .simb-modal.activo {
+    display: flex;
+  }
+  .simb-modal img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 60px rgba(0,0,0,0.8);
+    animation: simbZoomIn 0.25s ease;
+  }
+  .simb-modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    padding: 6px 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: none;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .simb-modal-close:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.5);
+  }
+  @keyframes simbZoomIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<!-- Modal popup -->
+<div class="simb-modal" id="simbModal">
+  <button class="simb-modal-close" id="simbModalClose">× cerrar</button>
+  <img id="simbModalImg" src="" alt="">
+</div>
+
+<div class="simb-wrap">
+  <div class="simb-header">
+    <p class="simb-num">04</p>
+    <p class="simb-subtag">Sección</p>
+    <h2 class="simb-titulo">Análisis de imagen y<br><em>repertorios simbólicos</em></h2>
+  </div>
+
+  <div class="simb-grid">
+
+    <!-- ── Imagen 1: 111.png ── -->
+    <div class="simb-entry">
+      <div class="simb-imagen-marco" data-src="111.png">
+        <img src="111.png" alt="Bloque de código hackfeminista">
+        <span class="simb-imagen-hint">clic para ampliar</span>
+      </div>
+      <p class="simb-entry-filename">111.png</p>
+      <div class="simb-acord-list">
+        <div class="simb-timeline-linea"></div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">01</p><h3 class="simb-acord-titulo">Representamen</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Se aprecia un bloque de código de programación (similar a JavaScript) con un bucle while que atrapa a la variable algoritmomisóginocolonialracistaysexista y una condición if que al cumplirse con algoritmiahackfeminista &lt;3 ejecuta la orden break;.</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">02</p><h3 class="simb-acord-titulo">El objeto</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Se denuncia que los algoritmos actuales no son neutrales, sino que reproducen lógicas de opresión: misoginia, colonialismo, racismo y sexismo. Como menciona Jesús Martín-Barbero (2009), "la tecnología remite hoy —tanto o más que a unos nuevos aparatos— a nuevos modos de percepción y de lenguaje."</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">03</p><h3 class="simb-acord-titulo">Interpretante</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>El bucle while sin una salida lógica interna simboliza cómo los sistemas algorítmicos hegemónicos atrapan y perpetúan la opresión de manera infinita. La única forma de romper (break) ese sistema no proviene de una corrección técnica dentro de la misma lógica opresiva, sino de la activación de un algoritmiahackfeminista que introduce un valor no computable para el sistema dominante: el afecto (&lt;3). Siguiendo a Rancière, disputa el "reparto de lo sensible" que excluye ese cuidado del profesionalismo tecnológico. El uso de código de manera ligera y tierna es en sí mismo una invitación a programar.</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">04</p><h3 class="simb-acord-titulo">Enunciación</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Hablan Liliana Zaragoza Cano (Lili_Anaz) y Anna Akhmatova. La primera es comunicóloga, y artista hackfeminista. La segunda creció en IRC y en la comunidad Linux, y es coautora de Safer Nudes! y Chupadatos en Coding Rights. Ambas hablan desde una posición en que la programación es una herramienta de liberación contemporánea.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Imagen 2: 222.jpg ── -->
+    <div class="simb-entry">
+      <div class="simb-imagen-marco" data-src="222.jpg">
+        <img src="222.jpg" alt="Cartel del Laboratorio de Interconectividades">
+        <span class="simb-imagen-hint">clic para ampliar</span>
+      </div>
+      <p class="simb-entry-filename">222.jpg</p>
+      <div class="simb-acord-list">
+        <div class="simb-timeline-linea"></div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">01</p><h3 class="simb-acord-titulo">Representamen</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Se aprecia un cartel con colores amarillo y naranja intensos, que atraen la atención y evocan energía. Aparece la imagen central de un monitor que tiene en su interior una bomba y debajo a una persona recuperándola con diversas herramientas a su alrededor. El texto pregunta: "SI TIENES EN TU CASA ALGUNA LAPTOP, MEMORIAS USB, CPU'S, MONITORES QUE YA NO UTILIZES?" Luego propone: "NOSOTRXS QUEREMOS REUTILIZAR ESA BASURA PARA CREAR UN ESPACIO PARA QUE TODXS PODAMOS COMPARTIR IMAGENES, FOTOS, FANZINES, IDEAS, RECETAS, LIBROS DIGITALES ETC." Se indica un lugar, una dirección, un rango de fechas y el evento "ZINFUTURO". Abajo aparecen dos sitios web.</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">02</p><h3 class="simb-acord-titulo">El objeto</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Se denuncia que los dispositivos electrónicos en desuso son tratados como "basura" cuando aún pueden ser reutilizados. Se propone recuperarlos para transformarlos en infraestructura comunitaria de intercambio cultural autogestivo fuera de los circuitos de producción en masa.</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">03</p><h3 class="simb-acord-titulo">Interpretante</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>La bomba de dinamita dentro de la computadora alude a la obsolescencia programada: así como a las bombas se les prende el mechero y es solo cuestión de tiempo para que exploten, los dispositivos electrónicos vienen diseñados de fábrica para volverse inservibles en un tiempo calculado y que así sigamos consumiendo productos. Los colores amarillo y naranja intensos remiten al peligro, pero también a una decisión estético-política. Mientras el canon profesional asocia lo "serio" a tonos sobrios, las hackfeministas eligen lo llamativo, lo chillante, lo saturado, para disputar lo que se considera legítimo y visible. Por último, la palabra "basura" se resignifica como materia prima para la creación colectiva, el lenguaje inclusivo ("NOSOTRXS", "TODXS") descentraliza a los hombres de las prácticas de resistencia, y la invitación a compartir "recetas e ideas" fusiona lo tecnológico con lo doméstico y lo afectivo.</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">04</p><h3 class="simb-acord-titulo">Enunciación</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Habla el Laboratorio de Interconectividades, un proyecto gestionado por Lili Anaz (Liliana Zaragoza Cano) desde una posición de soberanía tecnológica.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Imagen 3: 333.png ── -->
+    <div class="simb-entry">
+      <div class="simb-imagen-marco" data-src="333.png">
+        <img src="333.png" alt="Hacker nos hará libres">
+        <span class="simb-imagen-hint">clic para ampliar</span>
+      </div>
+      <p class="simb-entry-filename">333.png</p>
+      <div class="simb-acord-list">
+        <div class="simb-timeline-linea"></div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">01</p><h3 class="simb-acord-titulo">Representamen</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Se aprecia un texto negro con amarillo intenso, sobre fondo rosa igualmente intenso. Este texto está superpuesto a manera que se lee "hcker" y "hackear" y debajo "NOS HARÁ LIBRES".</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">02</p><h3 class="simb-acord-titulo">El objeto</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>La frase completa evoca la máxima "hackear nos hará libres", que disputa la promesa tecnológica privatizada y elitista de que "el progreso" (siempre por venir, siempre en el siguiente dispositivo, actualización o innovación) terminará por liberarnos, aunque en realidad nos mantiene atrapados en una aspiración infinita de consumo. Siguiendo a Rancière, la política auténtica ocurre cuando aquellos que no tienen parte (los excluidos, los invisibilizados) irrumpen y demuestran que pueden actuar; en este caso las mujeres: hackear.</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">03</p><h3 class="simb-acord-titulo">Interpretante</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>La frase recuerda que hackear es criminalizado solamente porque no es conveniente para las empresas tecnológicas y que, por tanto, no es una habilidad técnica neutral, sino una práctica de liberación. Cuando el hackfeminismo dice "hackear", no está usando la palabra como la usa un corporativo o un delincuente informático. Hay un desacuerdo radical —mésentente— sobre lo que significa (Rancière).</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">04</p><h3 class="simb-acord-titulo">Enunciación</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Habla Irene Soria, desde su página web, donde todos sus artículos mantienen esta misma estética y paleta de colores. Ella es una reconocida académica hackfeminista mexicana, presidenta de la asamblea de asociadas de Luchadoras y su tesis doctoral se titula "En busca de las hacker: mujeres con prácticas computacionales especializadas".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Imagen 4: 444.PNG ── -->
+    <div class="simb-entry">
+      <div class="simb-imagen-marco" data-src="444.PNG">
+        <img src="444.PNG" alt="Activismo Mutante — Infoactivismo">
+        <span class="simb-imagen-hint">clic para ampliar</span>
+      </div>
+      <p class="simb-entry-filename">444.PNG</p>
+      <div class="simb-acord-list">
+        <div class="simb-timeline-linea"></div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">01</p><h3 class="simb-acord-titulo">Representamen</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Se aprecia un póster digital con una paleta de colores dominada por un rosa intenso y salpicado con elementos de collage. Sobre este fondo, figuras humanas estilizadas: puños en alto y brazos sosteniendo un megáfono, que se mezclan con imágenes de alas de mariposa en blanco y negro de gran tamaño. El título "ACTIVISMO MUTANTE" aparece en letras grandes y pixeladas, dominando la parte superior central. Debajo, el subtítulo "Estrategias y creatividad frente al cambio constante". La información práctica es clara: "Martes 28 de Abril del 2026", "12:00 (Hora CDMX)". Un código QR prominente facilita el registro, y en la parte inferior izquierda aparece el logo "INFOACTIVISMO".</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">02</p><h3 class="simb-acord-titulo">El objeto</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Se convoca a una conversación en línea dirigida a personas que desarrollan estrategias en redes sociales desde el activismo, el feminismo, la diversidad y la defensa de derechos digitales. Se parte de la premisa de que el contexto cambia constantemente y las estrategias tradicionales (planeadas, rígidas) pueden no ser suficientes. Se propone explorar estrategias emergentes como respuesta a problemas que se reciclan sin que el contexto cambie de fondo.</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">03</p><h3 class="simb-acord-titulo">Interpretante</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>El collage como técnica visual fue una práctica central en el feminismo y otros movimientos sociales o subculturas de los años 70 y 80. El hackfeminismo la recupera: los puños en alto remiten a la lucha organizada y la solidaridad; las alas de mariposa en blanco y negro evocan la metamorfosis (mutación). La tipografía pixelada remite a lo digital y lo no pulido. Se disputa la idea de que una estrategia fija planeada es siempre la más efectiva, y que el activismo mutante es el que aprende a improvisar, adaptarse y mutar. Así, se sitúan en la tradición del activismo de derechos digitales, con un pie en la calle (los puños, el megáfono) y otro en la pantalla (el QR, los píxeles). Como propone Martín-Barbero (2009), acabamos "desterritorializando las formas de percibir lo próximo y lo lejano hasta tornar más cercano lo vivido 'a distancia', virtualmente, que lo que cruza nuestro espacio físico cotidianamente".</p>
+          </div>
+        </div>
+        <div class="simb-acord" data-open="false">
+          <button class="simb-acord-header" aria-expanded="false">
+            <div><p class="simb-acord-num">04</p><h3 class="simb-acord-titulo">Enunciación</h3></div>
+            <span class="simb-acord-ico">＋</span>
+          </button>
+          <div class="simb-acord-body">
+            <p>Habla SocialTIC, organización dedicada al uso de tecnologías para el activismo y los derechos digitales. El evento forma parte de INFOACTIVISMO, una rama que vincula información, tecnología y acción política. Enuncian desde una posición horizontal y de co-aprendizaje (no desde la experticia distante), invitando a "traer tus dudas y resolverlas juntes".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /simb-grid -->
+
+<script>
+  // Acordeones de la sección símbolos
+  document.querySelectorAll('.simb-acord').forEach(function(acord) {
+    acord.querySelector('.simb-acord-header').addEventListener('click', function() {
+      var open = acord.dataset.open === 'true';
+      acord.dataset.open = open ? 'false' : 'true';
+      acord.querySelector('.simb-acord-header').setAttribute('aria-expanded', !open);
+    });
+  });
+
+  // Popup de imágenes
+  var modal = document.getElementById('simbModal');
+  var modalImg = document.getElementById('simbModalImg');
+  var modalClose = document.getElementById('simbModalClose');
+
+  document.querySelectorAll('.simb-imagen-marco').forEach(function(wrap) {
+    wrap.addEventListener('click', function() {
+      modalImg.src = wrap.dataset.src;
+      modal.classList.add('activo');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function cerrarModal() {
+    modal.classList.remove('activo');
+    document.body.style.overflow = '';
+  }
+
+  modalClose.addEventListener('click', cerrarModal);
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) cerrarModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') cerrarModal();
+  });
+</script>
+</section>
+
+<!-- ═══════ IMAGINACIÓN ═══════ -->
+<section id="imaginacion">
+<style>
+  #imaginacion {
+    min-height: 100vh;
+    padding: 120px 0 100px;
+    position: relative;
+  }
+  .imag-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  /* ── Cabecera full-width ── */
+  .imag-cabecera {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: end;
+    gap: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--borde);
+    margin-bottom: 4rem;
+  }
+  .imag-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(5rem, 10vw, 9rem);
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(232,0,122,0.08);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+  .imag-titulo-col {}
+  .imag-subtag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .imag-subtag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--fucsia);
+  }
+  .imag-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 2.8vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .imag-titulo em { font-style: italic; color: var(--fucsia-light); }
+  .imag-meta-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    padding-bottom: 0.25rem;
+  }
+  .imag-autor-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border: 1px solid rgba(167,139,250,0.35);
+    background: rgba(167,139,250,0.04);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--morado-light);
+  }
+  .imag-intro-meta {
+    font-size: 12px;
+    color: var(--gris);
+    font-style: italic;
+    text-align: right;
+    max-width: 220px;
+    line-height: 1.6;
+  }
+
+  /* ── Cuerpo: 2 columnas (contenido | datos) ── */
+  .imag-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  /* Columna central: texto */
+  .imag-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .imag-bloque {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--borde);
+  }
+  .imag-bloque:first-child { padding-top: 0; }
+  .imag-bloque:last-child { border-bottom: none; }
+  .imag-bloque-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    margin-bottom: 0.75rem;
+  }
+  .imag-bloque-texto {
+    font-size: 14px;
+    color: var(--gris-claro);
+    line-height: 1.9;
+    text-align: justify;
+  }
+  .imag-bloque-texto strong {
+    font-weight: 600;
+    color: var(--crema);
+  }
+
+  /* Columna der: datos laterales */
+  .imag-datos-col {
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .imag-dato {
+    display: block;
+    text-decoration: none;
+    padding: 1.1rem 1.1rem 1.1rem 1rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--fucsia);
+    transition: background 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .imag-dato:hover {
+    background: rgba(232,0,122,0.07);
+    border-left-color: var(--fucsia-light);
+    border-color: rgba(232,0,122,0.3);
+  }
+  .imag-dato-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: var(--fucsia-light);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .imag-dato-desc {
+    font-size: 12px;
+    color: var(--gris-claro);
+    line-height: 1.55;
+  }
+  .imag-dato-concepto {
+    border-left-color: var(--morado-light);
+  }
+  .imag-dato-concepto .imag-dato-num {
+    font-size: 1.2rem;
+    color: var(--morado-light);
+  }
+
+  @media (max-width: 1100px) {
+    .imag-body-grid { grid-template-columns: 1fr; }
+    .imag-datos-col { position: static; }
+    .imag-cabecera { grid-template-columns: auto 1fr; }
+    .imag-meta-col { display: none; }
+  }
+  @media (max-width: 640px) {
+    .imag-wrap { padding: 0 2rem; }
+    .imag-cabecera { grid-template-columns: 1fr; gap: 1rem; }
+    .imag-num { display: none; }
+  }
+</style>
+
+<div class="imag-wrap">
+
+  <div class="imag-cabecera">
+    <p class="imag-num">05</p>
+    <div class="imag-titulo-col">
+      <p class="imag-subtag">Sección</p>
+      <h2 class="imag-titulo">Política literal y política literaria:<br><em>imaginación y desidentificación</em></h2>
+    </div>
+    <div class="imag-meta-col">
+      <span class="imag-autor-tag">Basada en Fernández Savater</span>
+      <p class="imag-intro-meta">La ficción política nombra lo que el poder declara imposible</p>
+    </div>
+  </div>
+
+  <div class="imag-body-grid">
+
+    <!-- Contenido central -->
+    <div class="imag-contenido">
+
+      <div class="imag-bloque">
+        <p class="imag-bloque-label">Ficción política</p>
+        <p class="imag-bloque-texto">
+          El sentido común dominante dibuja al hacker como figura masculina, asocial, mística y solitaria: un genio anónimo detrás de su escritorio. El hackfeminismo mexicano <strong>desarticula esa imagen a través de la ficción política</strong>: no representa algo que ya existe, sino que hace existir lo que el poder declara imposible. Por eso, para el poder y el sentido común, la ficción política siempre parece sospechosa, pues agrupa a tantas personas que no es fácil trazar quiénes son exactamente los responsables de ese cambio al que quieren resistirse.
+        </p>
+      </div>
+
+      <div class="imag-bloque">
+        <div class="ctx-cita" style="border-top:none; padding-top:0; margin: 0;">
+          <div class="ctx-cita-linea"></div>
+          <div>
+            <p class="ctx-cita-texto">
+              "En la cultura hacker tenemos mucho esta cosa de no decirte hacker a ti misma, sino esperar a que alguien más te diga hacker. Pero después de mi investigación doctoral me di cuenta que en el caso de las mujeres y las disidencias sexuales, pues es muy importante nombrarse."
+            </p>
+            <p class="ctx-cita-fuente">Irene Soria — investigadora y hackfeminista mexicana</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="imag-bloque">
+        <p class="imag-bloque-label">Nombre colectivo</p>
+        <p class="imag-bloque-texto">
+          El movimiento crea un nombre colectivo que no pide acreditación. Llamarse "hackfeminista" no exige un título en ciencias computacionales ni la validación de la comunidad patriarcal. Es un acto que <strong>abre un territorio común</strong>; como explica Fernández Savater, el poder nombra para separar, clasificar y estigmatizar; la imaginación política responde con un nombre vacío donde cabe cualquiera que quiera.
+        </p>
+      </div>
+
+      <div class="imag-bloque">
+        <p class="imag-bloque-label">Comunidad sensible</p>
+        <p class="imag-bloque-texto">
+          Este territorio común es habitado por una <strong>comunidad sensible</strong>: personas que comparten una inquietud y, en este caso, la convicción de que explorar, reapropiar y resistir tecnológicamente es ya una forma de hackeo. El mero uso de Linux frente a Windows, de Firefox frente a Google: el hackeo viene más bien de exploraciones tecnológicas, no de un estereotipo de genio solitario.
+        </p>
+      </div>
+
+      <div class="imag-bloque">
+        <p class="imag-bloque-label">Brecha STEM</p>
+        <p class="imag-bloque-texto">
+          En México, la participación femenina en carreras STEM no es baja por "falta de interés", sino por <strong>borradura histórica</strong>: la ausencia de modelos a seguir durante la infancia dificulta la proyección de vida de las mujeres en esas áreas. El hackfeminismo no espera a que el sistema educativo incluya a las mujeres; las incluye por su cuenta, bajo un nombre colectivo. La ficción política del hackfeminismo suple esa falta: <strong>amplía lo que puede ser una hacker</strong>.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Datos laterales derechos: cifras duras -->
+    <aside class="imag-datos-col">
+
+      <a class="imag-dato" href="https://www.informador.mx/estilo/Tecnologia-Mexicanas-buscan-mayor-inclusion-de-mujeres-en-las-carreras-del-futuro-20250211-0220.html" target="_blank" rel="noopener">
+        <p class="imag-dato-num">13%</p>
+        <p class="imag-dato-desc">De los empleos en áreas STEM en México son ocupados por mujeres</p>
+      </a>
+
+      <a class="imag-dato" href="https://www.informador.mx/estilo/Tecnologia-Mexicanas-buscan-mayor-inclusion-de-mujeres-en-las-carreras-del-futuro-20250211-0220.html" target="_blank" rel="noopener">
+        <p class="imag-dato-num">20%</p>
+        <p class="imag-dato-desc">De los profesionales en ciberseguridad en México son mujeres</p>
+      </a>
+
+      <a class="imag-dato" href="https://www.informador.mx/estilo/Tecnologia-Mexicanas-buscan-mayor-inclusion-de-mujeres-en-las-carreras-del-futuro-20250211-0220.html" target="_blank" rel="noopener">
+        <p class="imag-dato-num">12%</p>
+        <p class="imag-dato-desc">De los especialistas en inteligencia artificial son mujeres</p>
+      </a>
+
+      <a class="imag-dato" href="https://www.unesco.org/es/articles/naciones-unidas-en-mexico-insta-eliminar-las-brechas-que-privan-mujeres-y-ninas-acceder-plenamente" target="_blank" rel="noopener">
+        <p class="imag-dato-num">63%</p>
+        <p class="imag-dato-desc">De las mujeres en México que no usan internet señalan la falta de conocimientos como causa principal</p>
+      </a>
+
+      <a class="imag-dato" href="https://www.unesco.org/es/articles/naciones-unidas-en-mexico-insta-eliminar-las-brechas-que-privan-mujeres-y-ninas-acceder-plenamente" target="_blank" rel="noopener">
+        <p class="imag-dato-num">40%</p>
+        <p class="imag-dato-desc">De las mujeres en América Latina —más de 89 millones— no están conectadas o no pueden costear internet</p>
+      </a>
+
+      <a class="imag-dato" href="https://www.unesco.org/es/articles/naciones-unidas-en-mexico-insta-eliminar-las-brechas-que-privan-mujeres-y-ninas-acceder-plenamente" target="_blank" rel="noopener">
+        <p class="imag-dato-num">25%</p>
+        <p class="imag-dato-desc">Más de probabilidad tienen los hombres, a nivel global, de contar con habilidades digitales que las mujeres</p>
+      </a>
+
+      <a class="imag-dato" href="https://www.unesco.org/es/articles/naciones-unidas-en-mexico-insta-eliminar-las-brechas-que-privan-mujeres-y-ninas-acceder-plenamente" target="_blank" rel="noopener">
+        <p class="imag-dato-num">3 de 10</p>
+        <p class="imag-dato-desc">Mujeres usuarias de internet en México han sido víctimas de ciberacoso</p>
+      </a>
+
+    </aside>
+
+  </div>
+</div>
+</section>
+
+<!-- ═══════ CONTRANARRATIVAS ═══════ -->
+<section id="contranarrativa">
+<style>
+  #contranarrativa {
+    min-height: 100vh;
+    padding: 120px 0 100px;
+    background: rgba(255,255,255,0.01);
+    position: relative;
+  }
+  .contra-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+  .contra-header {
+    margin-bottom: 4rem;
+  }
+  .contra-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(5rem, 10vw, 9rem);
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(232,0,122,0.1);
+    letter-spacing: -0.04em;
+    margin-bottom: -0.5rem;
+    user-select: none;
+  }
+  .contra-subtag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .contra-subtag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--fucsia);
+  }
+  .contra-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    max-width: 600px;
+  }
+  .contra-titulo em { font-style: italic; color: var(--fucsia-light); }
+  .contra-intro {
+    font-size: 14px;
+    color: var(--gris);
+    line-height: 1.85;
+    max-width: 680px;
+    margin-bottom: 3rem;
+  }
+  /* Grid de dos autoras */
+  .contra-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  .contra-col {
+    border: 1px solid var(--borde);
+    background: rgba(255,255,255,0.02);
+    padding: 2rem;
+  }
+  .contra-col-rosa { border-top: 3px solid var(--fucsia); }
+  .contra-col-morada { border-top: 3px solid var(--morado-light); }
+  .contra-autora-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .contra-col-rosa .contra-autora-tag { color: var(--fucsia-light); }
+  .contra-col-morada .contra-autora-tag { color: var(--morado-light); }
+  .contra-autora-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--crema);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--borde);
+  }
+  .contra-parrafo {
+    font-size: 13.5px;
+    color: var(--gris-claro);
+    line-height: 1.9;
+    text-align: justify;
+    margin-bottom: 1.25rem;
+  }
+  .contra-parrafo:last-child { margin-bottom: 0; }
+  .contra-parrafo strong {
+    font-weight: 600;
+    color: var(--crema);
+  }
+  .contra-cita-inline {
+    border-left: 2px solid var(--fucsia);
+    padding: 0.75rem 1.25rem;
+    background: rgba(232,0,122,0.04);
+    margin: 1.25rem 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--crema);
+    line-height: 1.7;
+  }
+  .contra-cita-fuente {
+    font-family: 'Space Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-top: 0.5rem;
+    display: block;
+  }
+  /* Síntesis */
+  .contra-sintesis {
+    border: 1px solid var(--borde);
+    border-top: 3px solid var(--fucsia);
+    background: rgba(232,0,122,0.03);
+    padding: 2.5rem;
+    position: relative;
+  }
+  .contra-sintesis-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .contra-sintesis-tag::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--fucsia);
+  }
+  .contra-sintesis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+  .contra-sintesis-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .contra-sintesis-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gris);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--borde);
+  }
+  .contra-sintesis-text {
+    font-size: 13px;
+    color: var(--gris-claro);
+    line-height: 1.8;
+    text-align: justify;
+  }
+  .contra-sintesis-text strong { font-weight: 600; color: var(--crema); }
+  @media (max-width: 900px) {
+    .contra-grid { grid-template-columns: 1fr; }
+    .contra-sintesis-grid { grid-template-columns: 1fr; }
+    .contra-wrap { padding: 0 2rem; }
+  }
+</style>
+
+<div class="contra-wrap">
+  <div class="contra-header">
+    <p class="contra-num">06</p>
+    <p class="contra-subtag">Sección</p>
+    <h2 class="contra-titulo">Crisis de la verdad<br>y <em>contranarrativas</em></h2>
+  </div>
+
+  <div class="contra-grid">
+    <!-- Rosenfeld -->
+    <div class="contra-col contra-col-rosa">
+      <p class="contra-autora-tag">Marco teórico</p>
+      <h3 class="contra-autora-nombre">Sophia Rosenfeld</h3>
+
+      <p class="contra-parrafo">
+        La <strong>confianza pública</strong> es la creencia compartida de que existen instituciones —periódicos, universidades, agencias gubernamentales— capaces de ofrecer información veraz y legítima. Rosenfeld señala que esta confianza se ha erosionado profundamente. Sin embargo, no ha desaparecido: se transfirió a los algoritmos y las grandes corporaciones tecnológicas. Cedemos nuestros datos sin leer los términos y condiciones porque se nos orilla a actualizarnos constantemente bajo ellos. El algoritmo es una especie de "confianza" depositada en una caja negra que no entendemos.
+      </p>
+
+      <div class="contra-cita-inline">
+        "El conocimiento de los expertos es necesario, pero por sí solo es peligroso e insatisfactorio. [...] Cuando los expertos se dejan absorber demasiado por su disciplina, surge otro peligro, pues dejan de prestar atención a las necesidades de la gente o a los cambios que ocurren a ras del suelo."
+        <span class="contra-cita-fuente">Sophia Rosenfeld</span>
+      </div>
+
+      <p class="contra-parrafo">
+        En tecnología, esto significa que quienes programan se enajenan de que esa tecnología es empleada por usuarios cuyas necesidades y estilos de vida deberían tomar en cuenta. Esa parte ética y social la arrumban.
+      </p>
+
+      <p class="contra-parrafo">
+        El hackfeminismo <strong>disputa el monopolio del conocimiento especializado</strong> y combate la tecnocracia: ese régimen que pretende que solo los expertos decidan y que el resto solo obedezca. El hackfeminismo exige que no solo los expertos decidan, sino que todos podamos comprender lo que ocurre, sobre todo mujeres que ya tienen una desventaja histórica en ese campo.
+      </p>
+    </div>
+
+    <!-- Solnit -->
+    <div class="contra-col contra-col-morada">
+      <p class="contra-autora-tag">Marco teórico</p>
+      <h3 class="contra-autora-nombre">Rebecca Solnit</h3>
+
+      <p class="contra-parrafo">
+        Solnit habla de <strong>relatos que construyen "catedrales invisibles"</strong> y ordenan nuestra experiencia. Nos habituamos a ellos hasta darlos por verdades eternas, fijas e incuestionables. En tecnología, el relato dominante es uno de categorías cerradas: "es demasiado complejo", "solo los genios lo entienden", "es peligroso meter las manos". Esa barrera, esa opacidad de no saber cómo funciona, es algo normal cuando intentas entender la tecnología, incluso para los hombres. Pero ese relato nos paraliza.
+      </p>
+
+      <p class="contra-parrafo">
+        Frente a esto, Solnit propone la <strong>esperanza</strong>. No como certeza optimista de que todo saldrá bien, ni como predicción del futuro. La esperanza es más bien ver lo que ya se ha logrado en el pasado —cambios reales, victorias colectivas— y, a partir de ahí, actuar sin saber exactamente qué pasará. La imaginación de lo posible consiste en abrirse a alternativas, moverse con flexibilidad y rechazar tanto el pesimismo paralizante como el optimismo ingenuo.
+      </p>
+
+      <p class="contra-parrafo">
+        Su método está en el lema zapatista <strong>"caminando preguntamos"</strong>: no hace falta tener todas las respuestas para empezar. No se necesita ser experta en ciberseguridad para luchar contra el acoso digital o para instalar un software libre. Se aprende hackeando. La contranarrativa se construye en el proceso.
+      </p>
+    </div>
+  </div>
+
+  <!-- Síntesis -->
+  <div class="contra-sintesis">
+    <p class="contra-sintesis-tag">Síntesis</p>
+    <div class="contra-sintesis-grid">
+      <div class="contra-sintesis-item">
+        <span class="contra-sintesis-label">Diagnóstico — Rosenfeld</span>
+        <p class="contra-sintesis-text">
+          La <strong>confianza pública</strong> está secuestrada por la <strong>tecnocracia</strong>; el <strong>conocimiento especializado</strong> se ha vuelto opaco y excluyente; cedemos nuestros datos sin comprender a quién se los damos.
+        </p>
+      </div>
+      <div class="contra-sintesis-item">
+        <span class="contra-sintesis-label">Antídoto — Solnit</span>
+        <p class="contra-sintesis-text">
+          Romper los <strong>relatos de las categorías cerradas</strong> que reservan la tecnología a los expertos; activar la <strong>esperanza</strong> como práctica colectiva; caminar preguntando.
+        </p>
+      </div>
+      <div class="contra-sintesis-item">
+        <span class="contra-sintesis-label">Respuesta — Hackfeminismo</span>
+        <p class="contra-sintesis-text">
+          Desconfía del algoritmo como caja negra, pero confía en la <strong>inteligencia colectiva</strong>; no espera permiso de los expertos para nombrarse y actuar.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════ VIDEO ═══════ -->
+<section id="video">
+<style>
+  #video {
+    padding: 80px 0;
+    background: var(--bg);
+  }
+  .video-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+  .video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+  }
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  @media (max-width: 768px) {
+    .video-wrap { padding: 0 2rem; }
+  }
+</style>
+<div class="video-wrap">
+  <div class="video-container">
+    <video controls>
+      <source src="compilado.mov" type="video/mp4">
+    </video>
+  </div>
+</div>
+</section>
+
+<!-- ═══════ REFERENCIAS ═══════ -->
+<section id="referencias">
+<style>
+  #referencias {
+    padding: 120px 0 80px;
+    position: relative;
+  }
+  .ref-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+  .ref-cabecera {
+    display: flex;
+    align-items: end;
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--borde);
+  }
+  .ref-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(167,139,250,0.12);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+  .ref-titulo-col {}
+  .ref-subtag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--morado-light);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ref-subtag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--morado-light);
+  }
+  .ref-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  /* Lista de referencias */
+  .ref-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 5rem;
+  }
+  .ref-item {
+    display: grid;
+    grid-template-columns: 3px 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--borde);
+    align-items: start;
+  }
+  .ref-item:first-child { padding-top: 0; }
+  .ref-linea {
+    width: 3px;
+    background: var(--borde);
+    align-self: stretch;
+    min-height: 20px;
+    transition: background 0.2s;
+  }
+  .ref-item:hover .ref-linea { background: var(--morado-light); }
+  .ref-texto {
+    font-size: 13px;
+    color: var(--gris-claro);
+    line-height: 1.8;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.01em;
+  }
+  .ref-texto a {
+    color: var(--morado-light);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .ref-texto a:hover { text-decoration: underline; }
+  .ref-texto em { font-style: italic; color: var(--crema); }
+
+  /* Créditos */
+  .ref-creditos-titulo {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--morado-light);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ref-creditos-titulo::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--morado-light);
+  }
+  .ref-creditos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .ref-credito-card {
+    border: 1px solid var(--borde);
+    border-top: 2px solid var(--morado-light);
+    padding: 1.75rem 2rem;
+    background: rgba(255,255,255,0.02);
+  }
+  .ref-credito-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--crema);
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
+  }
+  .ref-credito-rol {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gris);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .ref-wrap { padding: 0 2rem; }
+    .ref-creditos-grid { grid-template-columns: 1fr; }
+    .ref-cabecera { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+</style>
+
+<div class="ref-wrap">
+
+  <div class="ref-cabecera">
+    <p class="ref-num">07</p>
+    <div class="ref-titulo-col">
+      <p class="ref-subtag">Bibliografía</p>
+      <h2 class="ref-titulo">Referencias</h2>
+    </div>
+  </div>
+
+  <div class="ref-lista">
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">Bravo Regidor, C. (2025). 5. Sophia Rosenfeld. ¿Crisis de la verdad? En <em>Mar de dudas</em> (pp. 115-134). Libros grano de sal.</p>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">Bravo Regidor, C. (2025). Rebeca Solnit | Cambiar los relatos, relatar el cambio. En <em>Mar de dudas</em> (pp. 165-188). Libros grano de sal.</p>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">Deleuze, G. (2006). Post-scriptum a las sociedades de control. <em>Polis</em>, (13). Publicado el 14 agosto 2012, consultado el 07 agosto 2019. <a href="http://journals.openedition.org/polis/5509" target="_blank" rel="noopener">http://journals.openedition.org/polis/5509</a></p>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">Emmelheinz, I. (2016). Subjetivación y gubernamentalidad. En <em>La tiranía del sentido común. La reconversión neoliberal de México</em> (pp. 89-118). Paradiso Editores.</p>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">Fernández-Savater, A. (2014). Política literal y política literaria. <em>El Diario España</em>. <a href="https://www.eldiario.es/interferencias/ficcion-politica-15-m_132_5503295.html" target="_blank" rel="noopener">https://www.eldiario.es/interferencias/ficcion-politica-15-m_132_5503295.html</a></p>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">Foucault, M. (2001). Clase del 17 de marzo de 1976. En <em>Defender la sociedad</em> (pp. 217-237). Fondo de Cultura Económica.</p>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">HackFem AI. (s.f.). Canal de HackFem AI [Channel de YouTube]. YouTube. Recuperado el 11 de mayo de 2026, de <a href="https://youtube.com/@hackfemai" target="_blank" rel="noopener">https://youtube.com/@hackfemai</a></p>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">Latour, B. (2008). Primera fuente de incertidumbre: no hay grupos, solo formación de grupos. En <em>Reensamblar lo social. Una introducción a la teoría del actor-red</em> (pp. 47-65).</p>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">Martín-Barbero, J. (2010). Mutaciones culturales y estéticas de la política. <em>Revista de Estudios Sociales</em>, (35), 15-25. <a href="http://www.scielo.org.co/pdf/res/n35/n35a03.pdf" target="_blank" rel="noopener">http://www.scielo.org.co/pdf/res/n35/n35a03.pdf</a></p>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">Melucci, A. (2009). Las teorías de los movimientos sociales. <em>Estudios Políticos</em>, 5(2). (Trabajo original publicado en 1975). <a href="https://www.revistas.unam.mx/index.php/rep/article/view/60047" target="_blank" rel="noopener">https://www.revistas.unam.mx/index.php/rep/article/view/60047</a></p>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-linea"></div>
+      <p class="ref-texto">Ramírez Muñoz, D. A. (2022). <em>Hackfeminismo: una mirada desde México</em>. Centro de Investigaciones y Estudios de Género, Universidad Nacional Autónoma de México. <a href="https://doi.org/10.22201/cieg.9786073068298e.2022" target="_blank" rel="noopener">https://doi.org/10.22201/cieg.9786073068298e.2022</a></p>
+    </div>
+
+  </div>
+
+  <!-- Créditos -->
+  <p class="ref-creditos-titulo">Créditos</p>
+  <div class="ref-creditos-grid">
+    <div class="ref-credito-card">
+      <p class="ref-credito-nombre">Melissa Vázquez Chávez</p>
+      <p class="ref-credito-rol">Estudiante de la Licenciatura en Arte y Creación<br>ITESO</p>
+    </div>
+    <div class="ref-credito-card">
+      <p class="ref-credito-nombre">Ana Sofía Oceguera Cervantes</p>
+      <p class="ref-credito-rol">Estudiante de la Licenciatura en Ciencias de la Comunicación<br>ITESO</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+</body>
+</html>
+
