@@ -2377,6 +2377,136 @@
 </div>
 </section>
 
+<!-- ═══════ CIERRE ═══════ -->
+<section id="cierre">
+<style>
+  #cierre {
+    padding: 120px 0 100px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+  #cierre::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--fucsia), transparent);
+    opacity: 0.4;
+  }
+  .cierre-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+  .cierre-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .cierre-lateral {
+    position: sticky;
+    top: 80px;
+  }
+  .cierre-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fucsia);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.75rem;
+  }
+  .cierre-tag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--fucsia);
+  }
+  .cierre-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--crema);
+    margin-bottom: 0;
+  }
+  .cierre-titulo em {
+    font-style: italic;
+    color: var(--fucsia-light);
+  }
+  .cierre-cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .cierre-parrafo {
+    font-size: 15.5px;
+    line-height: 1.9;
+    color: var(--gris-claro);
+    text-align: justify;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--borde);
+    position: relative;
+  }
+  .cierre-parrafo:first-child {
+    padding-top: 0;
+  }
+  .cierre-parrafo:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .cierre-parrafo strong {
+    color: var(--crema);
+    font-weight: 600;
+  }
+  .cierre-parrafo em {
+    font-style: italic;
+    color: var(--fucsia-light);
+  }
+
+  @media (max-width: 900px) {
+    .cierre-inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .cierre-lateral { position: static; }
+    .cierre-wrap { padding: 0 2rem; }
+  }
+</style>
+
+<div class="cierre-wrap">
+  <div class="cierre-inner">
+
+    <div class="cierre-lateral">
+      <p class="cierre-tag">Reflexión final</p>
+      <h2 class="cierre-titulo">Hackear<br>como acto<br><em>político</em></h2>
+    </div>
+
+    <div class="cierre-cuerpo">
+
+      <p class="cierre-parrafo">
+        Las tecnologías del poder operan con mayor eficiencia entre más vulnerable sea el sector social al que se dirigen. Por eso no basta con evidenciar las violencias que ejercen los avances tecnológicos que pertenecen solo a unos cuantos y que solo unos cuantos comprenden.
+      </p>
+
+      <p class="cierre-parrafo">
+        El hackfeminismo atraviesa varias fisuras en esa lógica. Permite transformar, reescribir y programar otra realidad posible: una en la que no sea normal que la figura del gamer, del ingeniero en sistemas, o simplemente del chico que se encarga de que la presentación se proyecte bien, sea siempre un hombre. Ellos acaparan la conversación tecnológica y, desde su posición, han demostrado una incapacidad inherente en reconocer que hay un problema con eso. Es fácil decir que las mujeres también pueden, que nadie lo niega — pero por algo no ocurre, y ese algo debe nombrarse: <strong>lógica patriarcal y colonial</strong>.
+      </p>
+
+      <p class="cierre-parrafo">
+        El hackfeminismo no atiende nuevas problemáticas, pero retoma las que ya existían — la desaparición forzada, el acoso digital, la exclusión de habilidades TIC — y las reencuadra desde el mundo del hackeo, o más bien, desde lo que las propias colectivas han expandido dentro de ese término. Hackear, para ellas, no es un delito ni una habilidad imposible. Es un acto político de reapropiación, y una necesidad en estos tiempos.
+      </p>
+
+    </div>
+  </div>
+</div>
+</section>
+
 <!-- ═══════ REFERENCIAS ═══════ -->
 <section id="referencias">
 <style>
